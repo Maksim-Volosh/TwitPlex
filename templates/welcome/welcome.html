@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<section data-bs-version="5.1" class="header2 cid-u9L1yIVP0z mbr-fullscreen" id="header2-0">
+    <div class="container first-el">
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <h1 class="mbr-section-title mbr-fonts-style mb-3 display-1"><strong>TwitPlex</strong></h1>
+                <h2 class="mbr-section-subtitle mbr-fonts-style mb-3 display-5">A place of warm stories</h2>
+                <p class="mbr-text mbr-fonts-style display-7">TwitPlex is a platform for sharing thoughts, ideas and news. Here you can create and post tweets, share your opinion and be inspired by the content of other users. Keep track of the latest trends, join discussions, make new friends and chat with like-minded people. Join TwitPlex and discover endless opportunities to communicate and share ideas!</p>
+                <div class="mbr-section-btn mt-3"><a class="btn btn-info display-4" href="#">First Twit</a>
+                    <a class="btn btn-success-outline display-4" href="#">Feeds &gt;</a></div>
+                
+            </div>
+            <div class="img-first"><div id="model-container"></div></div>
+            <style>
+                .first-el {
+                    z-index: 3;
+                }
+
+                .col-lg-8 {
+                    width: 56.6666666667%;
+                }
+                
+                #TwitPlex3DObj {
+                    position: absolute;
+                    z-index: 2;
+                    background-color: black;
+                }
+                
+            </style>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="features19 cid-sFGBbGYuTc" id="features20-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="card-wrapper pb-4">
+                    <div class="card-box align-center">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2">
+                            <strong>How it works</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mb-4 display-7">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum diam eu tellus cursus, sodales sollicitudin erat pulvinar. Quisque in mauris blandit ipsum non, hendrerit enim. Nullam fringilla ex sed maximus efficitur. Sed auctor justo elit, ac vestibulum metus semper non.</p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">1</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Register</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum diam eu tellus cursus, sodales sollicitudin erat pulvinar. Quisque in mauris blandit</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">2</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Custom profile</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum diam eu tellus cursus, sodales sollicitudin erat pulvinar. Quisque in mauris blandit</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">3</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>See any feeds</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum diam eu tellus cursus, sodales sollicitudin erat pulvinar. Quisque in mauris blandit</h5>
+                    </div>
+                </div>
+                <div class="item mbr-flex last">
+                    <div class="icon-box">
+                        <span class="step-number mbr-fonts-style display-5">4</span>
+                    </div>
+                    <div class="text-box">
+                        <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Add your feed</strong></h4>
+                        <h5 class="icon-text mbr-black mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum diam eu tellus cursus, sodales sollicitudin erat pulvinar. Quisque in mauris blandit</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.128.0/examples/js/controls/OrbitControls.js"></script> <!-- Подключаем OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script> <!-- Подключаем GLTFLoader -->
+    <script>const url = "{% static "3dmodels/ip15/untitled.gltf" %}"; </script> <!-- Подключаем GLTFLoader -->
+    <script src="{% static "js/script.js" %}"></script> <!-- Подключаем GLTFLoader -->
+    <script>
+    {% comment %} let loader = new THREE.GLTFLoader();
+    const degrees = 35; // Угол в градусах
+    const radians = degrees * Math.PI / 180; // Конвертация градусов в радианы
+    const degrees2 = -40; // Угол в градусах
+    const radians2 = degrees * Math.PI / 180; // Конвертация градусов в радианы
+
+    let model; // Сохраняем модель в переменной, чтобы обращаться к ней в функции animate()
+
+    loader.load('{% static "img/iphone_14_pro2/scene.gltf" %}', function(gltf) {
+        gltf.scene.scale.set(0.3, 0.3, 0.3);
+        gltf.scene.rotation.y = degrees2; // Применение начального поворота
+        gltf.scene.position.x = 4;
+        gltf.scene.position.y = -0.5;
+        scene.add(gltf.scene);
+        model = gltf.scene; // Сохраняем модель
+
+        if (gltf.animations && gltf.animations.length > 0) { // Проверяем наличие анимаций
+            mixer = new THREE.AnimationMixer(gltf.scene);
+            let action = mixer.clipAction(gltf.animations[0]);
+            action.play();
+        }
+
+        animate(); // Запускаем анимацию после загрузки модели
+    });
+
+
+    let controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    let endRotation = radians; // Установите конечный угол вращения в противоположном направлении
+    let currentRotation = -1; // Сохраняем текущее значение угла вращения
+    let direction = 1; // Направление вращения (вправо/влево)
+
+    function animate() {
+        requestAnimationFrame(animate);
+
+        // Определяем текущее время от запуска анимации
+        let delta = clock.getDelta();
+        // Обновляем текущее значение угла вращения
+        currentRotation += direction * delta * Math.PI * 0.04;
+
+        if (currentRotation >= endRotation) {
+            // Если достигли конечного угла вращения, меняем направление вращения
+            direction = -1;
+        } else if (currentRotation <= -endRotation) {
+            // Если достигли начального угла вращения, меняем направление вращения
+            direction = 1;
+        }
+
+        // Вращаем модель каждый кадр
+        if (model) {
+            model.rotation.y = currentRotation;
+        }
+        controls.update();
+        renderer.render(scene, camera);
+    }
+
+    let clock = new THREE.Clock(); {% endcomment %}
+
+    </script>
+</section>
+{% endblock body %}
