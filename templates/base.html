@@ -22,6 +22,9 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap"></noscript>
   <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" >
   <link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+  <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.3.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+  <link rel="stylesheet" href="{% static 'css/css.css' %}" >
 
   
   
@@ -31,28 +34,22 @@
 <header>
     <section data-bs-version="5.1" class="menu menu1 cid-sFGzlAXw3z" once="menu" id="menu1-2">
         <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-            <div class="container">
+            <div class="container mycont">
                 <div class="navbar-brand">
                     <span class="navbar-logo">
-                        <a href="index.html#top">
-                            <img src="{% static "assets/images/logo.png" %}" alt="Mobirise Website Builder" style="height: 3rem;">
+                        <a href="{% url "main:index" %}" class="d-flex align-items-center">
+                            <img src="{% static "assets/images/logo.png" %}" alt="Mobirise Website Builder" class="logo-br">
                         </a>
                     </span>
-                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="#">TwitPlex</a></span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="{% url "main:index" %}">TwitPlex</a></span>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <div class="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="#top"><span class="mobi-mbri mobi-mbri-home mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span>Home</a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features10-5"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn" style="font-size: 17px; color: rgb(255, 255, 255);"></span>Tweets</a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features19-a"><span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn" style="font-size: 17px; color: rgb(255, 255, 255);"></span>Search</a></li>
-                        <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features20-4"><span class="mobi-mbri mobi-mbri-alert mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span>Notifications</a></li><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features10-5"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span>Profile</a></li>
+                <div class="navbar">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="#top"><span class="mobi-mbri mobi-mbri-home mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Home</span></a></li>
+                        <li class="nav-item s-n-i"><a class="nav-link link text-white text-primary display-4" href="index.html#features19-a"><span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn" style="font-size: 17px; color: rgb(255, 255, 255);"></span><span class="cl-dn">Search</span></a></li>
+                        <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features20-4"><span class="mobi-mbri mobi-mbri-alert mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Notifications</span></a></li>
+                        <li class="nav-item"><a class="nav-link link text-white text-primary display-4 nav-last" href="index.html#features10-5"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Profile</span></a></li>
                     </ul>
-                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="#">First Twit</a></div>
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4 mybtn" href="#">Tweet</a></div>
                 </div>
             </div>
         </nav>

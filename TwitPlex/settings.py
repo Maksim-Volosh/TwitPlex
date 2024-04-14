@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     
     # Our apps
     'welcome.apps.WelcomeConfig',
+    'main.apps.MainConfig',
     
 ]
 

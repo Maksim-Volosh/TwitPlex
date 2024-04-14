@@ -1,0 +1,240 @@
+.twit {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-a {
+    margin: 0px 15px 0px 0px;
+}
+
+.tw-t {
+    font-size: 22px !important;
+    padding: 0px 0px 0px 0px;
+}
+
+.gray {
+    color: gray;
+    font-size: 15px !important;
+    padding: 2px 0px 0px 5px;
+}
+
+.twit-react {
+    padding: 30px 0px 0px 50px;
+    display: flex;
+    flex-direction: row;
+    gap: 55px;
+}
+
+.svg-i {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.cur-pos {
+    padding: 1px 0px 0px 0px;
+}
+
+.react-t {
+    padding: 0px 0px 4px 0px;
+}
+
+.twit-first {
+    align-items: center;
+    padding: 0px 0px 10px 0px;
+}
+
+.twit-second {
+    padding: 0px 0px 0px 55px;
+}
+
+.twit-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 30px;
+}
+
+.s-n-i {
+    margin: 2px 0px 0px 0px;    
+}
+
+.navbar-buttons {
+    margin: 0px 0px 0px 30px !important;
+}
+
+@media (max-width: 1199.98px) {
+    .nav-link {
+        padding: 0 0.1em !important;
+    }
+    .navbar-nav {
+        gap: 20px;
+    }
+
+    .twit-react {
+        padding: 30px 0px 0px 30px;
+        display: flex;
+        flex-direction: row;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .card {
+        width: 79.6666666666667% !important;
+    }
+    .twit-react {
+        padding: 30px 0px 0px 55px;
+        gap: 30px;
+    }
+    .twit {
+        padding: 2rem 1.25rem 2.25rem 1.25rem !important;
+    }
+    .twit-second {
+        padding: 0px 0px 0px 60px;
+    }
+    .navbar-nav {
+        flex-direction: row;
+        gap: 20px;
+    }
+    .cl-dn {
+        display: none;
+    }
+}
+
+.navbar-logo {
+    height: 3rem;
+}
+
+@media (max-width: 767.98px) {
+    .twit-react {
+        gap: 20px;
+    }
+
+    .svg-i {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .twit-react {
+        padding: 30px 0px 0px 20px;
+    }
+
+    .twit-second {
+        padding: 0px 0px 0px 20px;
+    }
+
+    .navbar-brand {
+        padding-right: 0.75rem !important;
+    }
+    .navbar-logo {
+        margin-right: 0.50rem !important;
+    }
+    .logo-br{
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .navbar-caption {
+        font-size: 24px;
+    }
+    .navbar-nav {
+        gap: 5px;
+    }
+    .mybtn {
+        margin: 0.6rem 0rem 0.6rem 0.6rem;
+    }
+    .mycont {
+        padding: 0px 0px 0px 0px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .tw-t {
+        font-size: 18px !important;
+        padding: 0px 0px 5px 0px;
+    }
+
+    .tw-tx {
+        font-size: 16px !important;
+    }
+
+    .navbar-nav {
+        gap: 0px;
+    }
+
+    .cid-sFGzlAXw3z .nav-dropdown .link {
+        padding: 0 0.1em !important;
+        margin: 0.667em 0.4em !important;
+    }
+
+}
+@media (max-width: 500.98px) {
+    .tw-t {
+        flex-direction: column;
+        align-items: center !important;
+        padding: 0px 0px 0px 0px;
+    }
+    .tw-t strong{
+        padding: 0px 0px 0px 0px;
+        line-height: 1.5;
+    }
+
+    .gray {
+        padding: 0px 0px 5px 0px;
+    }
+    .twit-avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 30px;
+    }
+    .img-a {
+        margin: 0px 10px 0px 0px
+    }
+    .navbar-caption{
+        display: none !important;
+    }
+}
+
+@media (max-width: 400.98px) {
+    .twit-second {
+        padding: 0px 0px 0px 0px;
+
+    }
+
+    .twit-react {
+        padding: 10px 0px 0px 0px;
+    }
+
+    .twit-react {
+        gap: 5px;
+    }
+
+    .react-t {
+        font-size: 12px;
+    }
+
+    .navbar-buttons {
+        margin: 0px 0px 0px 0px !important;
+    }
+    .navbar-brand {
+        padding-right: 0px !important;
+    }
+
+    .cid-sFGzlAXw3z .nav-dropdown .link {
+        padding: 0 0.1em !important;
+        margin: 0.667em 0.23716em !important;
+    }
+}
+
+/* @media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 1060px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1240px;
+    }
+} */
+
