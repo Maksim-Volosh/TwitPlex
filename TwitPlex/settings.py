@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 from django.conf.global_settings import STATICFILES_DIRS
@@ -29,6 +30,8 @@ INSTALLED_APPS = [
     # Our apps
     'welcome.apps.WelcomeConfig',
     'main.apps.MainConfig',
+    'user.apps.UserConfig',
+    'tweet.apps.TweetConfig',
     
 ]
 
@@ -106,4 +109,9 @@ STATICFILES_DIRS = [
 ]
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user.User'

@@ -6,5 +6,5 @@ from welcome.views import index
 app_name = 'welcome'
 
 urlpatterns = [
-    path('', index, name="home"),
+    path('', index, name="index"),
 ]
