@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tweet_tags %}
 
 {% block title %}Home - TwitPlex{% endblock title %}Home - TwitPlex
 
@@ -18,9 +19,9 @@
             <div class="twit-first d-flex flex-row">
               <div class="img-a">
                 {% if tw.owner.image %}
-                <img src="{% static "img/no_avatar.jpg" %}" alt="avatar" class="twit-avatar">
+                <a href="{{ tw.owner.image.url }}"><img src="{{ tw.owner.image.url }}" alt="avatar" class="twit-avatar"></a>
                 {% else %}
-                <img src="{{ tw.owner.image.url }}" alt="avatar" class="twit-avatar">
+                <img src="{% static "img/no_avatar.jpg" %}" alt="avatar" class="twit-avatar">
                 {% endif %}
               </div>
           
@@ -44,7 +45,20 @@
             </div>
           </div>
           <div class="align-left twit-react">
-            <div class="svg-i"><i class="fi fi-rs-heart "></i><span class="react-t">46,5K</span></div>
+            <div class="svg-i">
+              {% if request.user.is_authenticated %}
+                <button class="like-btn" data-tweet-id="{{ tw.id }}">
+                  <i class="fi {% check_liked_tweets tw.id request.user %}"></i>
+                </button>
+              {% else %}
+              <a href="{% url "admin:index" %}">
+                <button class="like-btn">
+                  <i class="fi fi-rs-heart"></i>
+                </button>
+              </a>
+              {% endif %}
+              <span class="react-t">{{ tw.likes_count }}</span>
+            </div>
             <div class="svg-i"><i class="fi fi-rs-comment-dots"></i><span class="react-t">6,3K</span></div>
             <div class="svg-i d-flex"><i class="fi fi-rr-undo"></i><span class="react-t">953</span></div>
             <div class="svg-i d-flex"><i class="fi fi-rr-bookmark cur-pos"></i><span class="react-t">1,3K</span></div>
@@ -55,8 +69,59 @@
   </div>
 </section>
 {% endfor %}
-  
-  
+    
+
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% if request.user.is_authenticated %}
+<script>
+  $(document).ready(function(){
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    $('.like-btn').click(function(){
+        var tweet_id = $(this).data('tweet-id');
+        var like_btn = $(this);
+        var csrftoken = getCookie('csrftoken');
+        var like_icon = like_btn.find('i');
+        $.ajax({
+            url: '/like_tweet/',
+            method: 'POST',
+            headers: {'X-CSRFToken': csrftoken},
+            data: {'tweet_id': tweet_id},
+            success: function(data){
+                console.log('Success:', data); // Отладочный вывод успешного ответа в консоль
+                console.log('Liked:', data.liked); // Отладочный вывод статуса лайка в консоль
+                if (data.liked) {
+                    like_icon.removeClass('fi-rs-heart').addClass('fi-ss-heart');
+                } else {
+                    like_icon.removeClass('fi-ss-heart').addClass('fi-rs-heart');
+                }
+                like_btn.siblings('.react-t').text(data.likes_count); // Обновляем количество лайков
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error); // Отладочный вывод ошибки в консоль
+            }
+        });
+    });
+});
+</script>
+{% endif %}
+
+    
+    
 {% endblock body %}

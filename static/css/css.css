@@ -26,12 +26,17 @@
     gap: 55px;
 }
 
-.svg-i {
+.svg-i, .like-btn {
     color: white;
     display: flex;
     align-items: center;
     gap: 4px;
 }
+
+.fi-ss-heart {
+    color: red;
+}   
+
 .cur-pos {
     padding: 1px 0px 0px 0px;
 }
@@ -237,4 +242,5 @@
         max-width: 1240px;
     }
 } */
+
 
