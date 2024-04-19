@@ -1,0 +1,67 @@
+{% load static %}
+{% load tweet_tags %}
+
+<div class="align-left twit-react">
+    <div class="svg-i">
+      {% if request.user.is_authenticated %}
+        <form id="like-form-{{ tw.id }}" hx-post="{% url 'tweet:like_tweet' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#like-react-t-{{tw.id}}">
+          <input type="hidden" name="tweet_id" value="{{ tw.id }}">
+          <button class="like-btn" type="button" hx-target="#like-form-{{ tw.id }}" onclick="likeToggleIconClass('{{ tw.id }}')">
+              <i class="fi {% check_liked_tweets tw.id request.user %}" id="like-icon-{{ tw.id }}"></i>
+              <span class="react-t" id="like-react-t-{{tw.id}}">{{ tw.likes_count }}</span>
+          </button>
+        </form>
+        <script>
+          function likeToggleIconClass(tweetId) {
+              var icon = document.getElementById('like-icon-' + tweetId);
+              if (icon.classList.contains('fi-rs-heart')) {
+                  icon.classList.remove('fi-rs-heart');
+                  icon.classList.add('fi-ss-heart');
+              } else {
+                  icon.classList.remove('fi-ss-heart');
+                  icon.classList.add('fi-rs-heart');
+              }
+          }
+        </script>
+      {% else %}
+      <a href="{% url "admin:index" %}">
+        <button class="like-btn">
+          <i class="fi fi-rs-heart"></i>
+          <span class="react-t">{{ tw.likes_count }}</span>
+        </button>
+      </a>
+      {% endif %}
+    </div>
+
+    <div class="svg-i">
+        <i class="fi fi-rs-comment-dots"></i>
+        <span class="react-t">953</span>
+    </div>
+    
+    <div class="svg-i d-flex">
+      <i class="fi fi-rr-undo"></i>
+      <span class="react-t">953</span>
+    </div>
+    
+    <div class="svg-i d-flex">
+      <form id="favorites-form-{{ tw.id }}" hx-post="{% url 'tweet:favorites_tweet' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#favorites-react-t-{{tw.id}}">
+        <input type="hidden" name="tweet_id" value="{{ tw.id }}">
+        <button class="favorites-btn" type="button" hx-target="#favorites-form-{{ tw.id }}" onclick="favoritesToggleIconClass('{{ tw.id }}')">
+            <i class="fi {% check_favorited_tweets tw.id request.user %}" id="favorites-icon-{{ tw.id }}"></i>
+            <span class="react-t" id="favorites-react-t-{{tw.id}}">{{ tw.favorites_count }}</span>
+        </button>
+      </form>
+      <script>
+        function favoritesToggleIconClass(tweetId) {
+            var icon = document.getElementById('favorites-icon-' + tweetId);
+            if (icon.classList.contains('fi-rr-bookmark')) {
+                icon.classList.remove('fi-rr-bookmark');
+                icon.classList.add('fi-sr-bookmark');
+            } else {
+                icon.classList.remove('fi-sr-bookmark');
+                icon.classList.add('fi-rr-bookmark');
+            }
+        }
+      </script>
+    </div>
+  </div>

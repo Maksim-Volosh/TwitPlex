@@ -7,5 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('welcome/', include('welcome.urls')),
     path('', include('main.urls')),
-    path('like_tweet/', include('tweet.urls')),
+    path('ajax/', include('tweet.urls')),
 ]

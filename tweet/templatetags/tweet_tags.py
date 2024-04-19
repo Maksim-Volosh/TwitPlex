@@ -21,3 +21,17 @@ def check_liked_tweets(twid, user):
             return clas
     else:
         return clas
+    
+@register.simple_tag
+def check_favorited_tweets(twid, user):
+    clas = "fi-rr-bookmark"
+    if user.is_authenticated:
+        try:
+            tweet = Tweets.objects.get(pk=twid)
+            if tweet.favorites.filter(pk=user.pk).exists():
+                clas = "fi-sr-bookmark"
+            return clas
+        except Tweets.DoesNotExist:
+            return clas
+    else:
+        return clas

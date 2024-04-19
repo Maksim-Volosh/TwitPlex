@@ -9,6 +9,7 @@ class Tweets(models.Model):
     time_update = models.DateTimeField(auto_now=True, verbose_name="Update time")
     owner = models.ForeignKey(to=User, on_delete=models.CASCADE, verbose_name="Owner")
     likes = models.ManyToManyField(User, related_name='liked_tweets')
+    favorites = models.ManyToManyField(User, related_name='favorited_tweets')
 
     class Meta:
         db_table = "tweet"
@@ -18,7 +19,4 @@ class Tweets(models.Model):
 
     def __str__(self):
         return f"Tweet №{self.id}, Owner: {self.owner}"
-
-    
-
     

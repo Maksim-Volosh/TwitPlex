@@ -26,23 +26,32 @@
     gap: 55px;
 }
 
-.svg-i, .like-btn {
+.svg-i, .like-btn, .favorites-btn {
     color: white;
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
+.favorites-btn {
+    gap: 12px;
+}
+
 .fi-ss-heart {
     color: red;
 }   
+
+.fi-sr-bookmark {
+    color: #47b5ed;
+}
+
 
 .cur-pos {
     padding: 1px 0px 0px 0px;
 }
 
 .react-t {
-    padding: 0px 0px 4px 0px;
+    padding: 0px 0px 5px 0px;
 }
 
 .twit-first {

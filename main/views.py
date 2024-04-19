@@ -10,11 +10,9 @@ def index(request):
         request.session['second_enter'] = True
         return redirect('welcome:index')
     else:
-        tweets = Tweets.objects.annotate(likes_count=Count('likes'))
+        tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
         
         current_year = datetime.now().year
-        
-        
         
         context = {
             "tweets": tweets,
