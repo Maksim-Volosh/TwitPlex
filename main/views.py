@@ -12,12 +12,14 @@ def index(request):
     else:
         tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
         
+        tweets_flag = tweets.exists()
+        
         current_year = datetime.now().year
         
         context = {
             "tweets": tweets,
             'current_year': current_year,
-            'current_year': current_year,
+            "tweets_flag": tweets_flag,
         }
         return render(request, 'main/index.html', context=context)
     

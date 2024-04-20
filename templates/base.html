@@ -50,7 +50,7 @@
                         <li class="nav-item s-n-i"><a class="nav-link link text-white text-primary display-4" href="index.html#features19-a"><span class="mobi-mbri mobi-mbri-search mbr-iconfont mbr-iconfont-btn" style="font-size: 17px; color: rgb(255, 255, 255);"></span><span class="cl-dn">Search</span></a></li>
                         <li class="nav-item"><a class="nav-link link text-white text-primary display-4" href="index.html#features20-4"><span class="mobi-mbri mobi-mbri-alert mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Notifications</span></a></li>
                         {% if request.user.is_authenticated %}
-                            <li class="nav-item"><a class="nav-link link text-white text-primary display-4 nav-last" href="index.html#features10-5"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Profile</span></a></li>
+                            <li class="nav-item"><a class="nav-link link text-white text-primary display-4 nav-last" href="{% url "user:profile" request.user.username %}"><span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">Profile</span></a></li>
                             {% if request.user.is_superuser %}
                                 <li class="nav-item"><a class="nav-link link text-white text-primary display-4 nav-last" href="{% url "admin:index" %}"><span class="mobi-mbri mobi-mbri-lock mbr-iconfont mbr-iconfont-btn" style="color: rgb(255, 255, 255);"></span><span class="cl-dn">&nbsp;Admin</span></a></li>
                             {% endif %}
@@ -95,5 +95,6 @@
 <script src="{% static "assets/dropdown/js/navbar-dropdown.js" %}"></script>
 <script src="{% static "assets/ytplayer/index.js" %}"></script>
 <script src="{% static "assets/theme/js/script.js" %}"></script>
+<script src="https://unpkg.com/htmx.org@^1.6.1/dist/htmx.min.js"></script>
 
 </html>

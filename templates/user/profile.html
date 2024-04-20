@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}TwitPlex - Profile{% endblock title %}
+
+{% block body %}
+<section data-bs-version="5.1" class="team2 cid-u9LjrTdbfr" xmlns="http://www.w3.org/1999/html" id="team2-r">
+    <div class="container">
+        <div class="item features-image">
+            <div class="item-wrapper">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-4">
+                        <div class="image-wrapper">
+                            <img src="{{ user.image.url }}" alt="Mobirise Website Builder">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md">
+                        <div class="card-box">
+                            <h5 class="card-title mbr-fonts-style m-0 mb-3 display-7">
+                                <strong> {{user.name}} </strong><br><em>@{{user.username}}</em><br><em><br></em><strong>Programmer</strong><br>{{user.bio}}<br><br><em>Joined June 2009</em><br><br><em>573 Following&nbsp; &nbsp; &nbsp;</em><em>180.2M Followers&nbsp; &nbsp; &nbsp;</em><em>149 Subscriptions</em></h5>
+                            
+                            
+                            <div class="social-row display-7">
+                                <div class="soc-item">
+                                    <a href="https://www.facebook.com/Mobirise/" target="_blank">
+                                        <span class="mbr-iconfont socicon socicon-facebook"></span>
+                                    </a>
+                                </div>
+                                <div class="soc-item">
+                                    <a href="https://twitter.com/mobirise" target="_blank">
+                                        <span class="mbr-iconfont socicon socicon-twitter"></span>
+                                    </a>
+                                </div>
+                                <div class="soc-item">
+                                    <a href="https://instagram.com/mobirise" target="_blank">
+                                        <span class="mbr-iconfont socicon socicon-instagram"></span>
+                                    </a>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-u9Lkf0w5Ih" id="content4-s">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-md-12 col-lg-10">
+                <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+                    <strong>Tweets</strong></h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-u9LmM9VaVn" id="content4-w">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-md-12 col-lg-10">
+                <button id="tweets-btn" class="underline tweet active" hx-get="{% url 'user:show_tweets' user.username 'tweets' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('tweets-btn')">Tweets</button>
+                <button id="favorites-btn" class="favorites" hx-get="{% url 'user:show_tweets' user.username 'favorites' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('favorites-btn')">Favorites</button>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="article07 cid-u9LgirLGy7 place-for-tweets" id="article20-i">
+    {% include "tweets/tweets.html" %}
+</section>
+
+    <script>
+        function choiseCategory(buttonId) {
+            var btn = document.getElementById(buttonId);
+            if (btn.classList.contains('tweet')) {
+                var btn2 = document.getElementById('favorites-btn'); 
+            } else {
+                var btn2 = document.getElementById('tweets-btn');
+            }
+            
+        
+            if (btn2.classList.contains('underline')) {
+                btn2.classList.remove('underline');
+                btn.classList.add('underline');
+            }
+
+            setTimeout(function() {
+                btn.classList.add('active'); // Добавить класс для плавного изменения подчеркивания
+                btn2.classList.remove('active'); // Удалить класс с другой кнопки
+            }, 10); // Небольшая задержка для применения CSS
+
+        }
+    </script>
+
+
+   <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
+      <input name="animation" type="hidden">
+{% endblock body %}
