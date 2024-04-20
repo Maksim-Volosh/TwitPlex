@@ -1,8 +1,7 @@
 import os
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
-
+import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +31,9 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'user.apps.UserConfig',
     'tweet.apps.TweetConfig',
+    
+    # utils apps
+    'django_redis',
     
 ]
 
@@ -71,6 +73,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': f'redis://{config.REDISUSERNAME}:{config.REDISPASSWORD}@{config.REDISURL}',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
     }
 }
 

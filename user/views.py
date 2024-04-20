@@ -7,8 +7,14 @@ from tweet.models import Tweets
 from user.models import User
 
 def profile(request, username):
-    user = User.objects.get(username=username)
     
+    cache_key = f'user_{username}'
+    user = cache.get(cache_key)
+    
+    if not user:
+        user: User = User.objects.get(username=username)
+        cache.set(cache_key, user, 60)
+        
     tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
     
     user_tweets = tweets.filter(owner=user)
@@ -50,7 +56,6 @@ def show_tweets(request, post_type, username):
         favorites_tweets = all_tweets.filter(favorites=user)
         
         tweets_flag = favorites_tweets.exists()
-        print(tweets_flag)
         
         context = {
             "tweets": favorites_tweets,
