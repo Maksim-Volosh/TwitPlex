@@ -15,7 +15,10 @@ def profile(request, username):
         user: User = User.objects.get(username=username)
         cache.set(cache_key, user, 60)
         
-    tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
+    tweets = Tweets.objects.annotate(
+        likes_count=Count('likes'),
+        favorites_count=Count('favorites')
+    )
     
     user_tweets = tweets.filter(owner=user)
         
@@ -40,7 +43,11 @@ def show_tweets(request, post_type, username):
     context = {}
 
     if post_type == 'tweets':
-        all_tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
+        all_tweets = Tweets.objects.annotate(
+            likes_count=Count('likes'),
+            favorites_count=Count('favorites')
+            )
+        
         user_tweets = all_tweets.filter(owner=user)
         
         tweets_flag = user_tweets.exists()
@@ -52,7 +59,11 @@ def show_tweets(request, post_type, username):
         }
     
     elif post_type == 'favorites':
-        all_tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
+        all_tweets = Tweets.objects.annotate(
+            likes_count=Count('likes'),
+            favorites_count=Count('favorites')
+        )
+        
         favorites_tweets = all_tweets.filter(favorites=user)
         
         tweets_flag = favorites_tweets.exists()
@@ -63,5 +74,5 @@ def show_tweets(request, post_type, username):
             "tweets_flag": tweets_flag,
         }
         
-    return render(request, 'tweets/tweets.html', context=context)
+    return render(request, 'main/include/tweets.html', context=context)
 

@@ -9,48 +9,8 @@
 <section data-bs-version="5.1" class="b">
 
 </section>
-{% for tw in tweets %}
-<section data-bs-version="5.1" class="article07 cid-u9LgirLGy7" id="article20-i">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="card col-md-12 col-lg-7">
-        <div class="card-wrapper twit">
-          <div class="col-12 content-head d-flex flex-column">
-            <div class="twit-first d-flex flex-row">
-              <div class="img-a">
-                {% if tw.owner.image %}
-                <a href="{{ tw.owner.image.url }}"><img src="{{ tw.owner.image.url }}" alt="avatar" class="twit-avatar"></a>
-                {% else %}
-                <img src="{% static "img/no_avatar.jpg" %}" alt="avatar" class="twit-avatar">
-                {% endif %}
-              </div>
-          
-              <div class="cont-title">
-                <h3 class="mbr-section-title mbr-fonts-style align-left mb-0 display-2 d-flex align-items-center tw-t">
-                  <strong class=""> {{ tw.owner.name|capfirst }} </strong><span class="gray">@{{ tw.owner|capfirst }} ·
-                      {% if tw.time_create.year == current_year %}
-                          {{ tw.time_create|date:"M d" }}
-                      {% else %}
-                          {{ tw.time_create|date:"M d, Y" }}
-                      {% endif %}
-                  </span>
-                </h3>
-              </div>
-            </div>
-            <div class="twit-second">
-              <div class="counter-container mbr-text mbr-fonts-style display-7 tw-tx">
-                <p>{{ tw.tweet|linebreaks }}</p>
-                  
-              </div>
-            </div>
-          </div>
-          {% include "main/include/tweet-reacts.html" %}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{% endfor %}
+
+{% include "main/include/tweets.html" %}
     
 
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>

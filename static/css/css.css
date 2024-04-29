@@ -98,6 +98,29 @@
     width: 100%; /* Полная ширина подчеркивания */
 }
 
+.image-image {
+    border-radius: 10px;
+}
+
+.sort-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.sort-buttons-div {
+    display: flex;
+    align-items: flex-end;
+}
+
+.sort-buttons-div i{
+    color: #e0dfdfc7;
+}
+
+.ww {
+    width: 25%;
+}
 
 @media (max-width: 1199.98px) {
     .nav-link {
@@ -142,6 +165,12 @@
     height: 3rem;
 }
 
+.logo-br{
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 30px;
+}
+
 @media (max-width: 767.98px) {
     .twit-react {
         gap: 20px;
@@ -165,10 +194,6 @@
     }
     .navbar-logo {
         margin-right: 0.50rem !important;
-    }
-    .logo-br{
-        width: 32px !important;
-        height: 32px !important;
     }
     .navbar-caption {
         font-size: 24px;
@@ -273,5 +298,38 @@
         max-width: 1240px;
     }
 } */
+
+@media (max-width: 767.98px) {
+    #TwitPlex3DObj {
+        display: none !important;
+    }
+
+    .col-lg-8 {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .col-lg-8 {
+        padding: 0px 20px 0px 20px !important;
+    }
+    .cid-sFGBbGYuTc .icon-box {
+        width: 50px;
+        min-width: 50px;
+        height: 50px;
+    }
+
+    .cid-sFGBbGYuTc .step-number {
+        padding-top: 0px;
+    }
+}
+
+@media (max-width: 500.98px) {
+    .btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 12px;
+    }
+}
+
 
 

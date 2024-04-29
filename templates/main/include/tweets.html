@@ -34,6 +34,11 @@
                 <p>{{ tw.tweet|linebreaks }}</p>
                   
               </div>
+              <div class="tweet-image">
+                {% if tw.image %}
+                <a href="{{ tw.image.url }}"><img src="{{ tw.image.url }}" alt="Tweet image" class="image-image" style="max-width: 582px; max-height: 582px;"></a>
+                {% endif %}
+              </div>
             </div>
           </div>
           {% include "main/include/tweet-reacts.html" %}

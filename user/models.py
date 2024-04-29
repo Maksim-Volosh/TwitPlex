@@ -3,9 +3,29 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
-    name = models.CharField(max_length=40, verbose_name="Name")
-    bio = models.TextField(blank=True, verbose_name="Bio", max_length=80)
-    image = models.ImageField(upload_to='users_images', blank=True, null=True, verbose_name="Avatar")
+    name = models.CharField(
+        max_length=40,
+        verbose_name="Name"
+    )
+    
+    bio = models.TextField(
+        blank=True,
+        verbose_name="Bio",
+        max_length=80
+    )
+    
+    sphere = models.CharField(
+        blank=True,
+        max_length=35,
+        verbose_name="Sphere"
+    )
+    
+    image = models.ImageField(
+        upload_to='users_images',
+        blank=True,
+        null=True,
+        verbose_name="Avatar"
+    )
 
     class Meta:
         db_table = "user"

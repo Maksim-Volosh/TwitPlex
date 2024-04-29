@@ -10,7 +10,10 @@ def index(request):
         request.session['second_enter'] = True
         return redirect('welcome:index')
     else:
-        tweets = Tweets.objects.annotate(likes_count=Count('likes'), favorites_count=Count('favorites'))
+        tweets = Tweets.objects.annotate(
+            likes_count=Count('likes'),
+            favorites_count=Count('favorites')
+        )
         
         tweets_flag = tweets.exists()
         
