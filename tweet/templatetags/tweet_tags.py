@@ -9,11 +9,10 @@ from tweet.models import Tweets
 register = template.Library()
 
 @register.simple_tag
-def check_liked_tweets(twid, user):
+def check_liked_tweets(tweet, user):
     clas = "fi-rs-heart"
     if user.is_authenticated:
         try:
-            tweet = Tweets.objects.get(pk=twid)
             if tweet.likes.filter(pk=user.pk).exists():
                 clas = "fi-ss-heart"
             return clas
@@ -23,11 +22,10 @@ def check_liked_tweets(twid, user):
         return clas
     
 @register.simple_tag
-def check_favorited_tweets(twid, user):
+def check_favorited_tweets(tweet, user):
     clas = "fi-rr-bookmark"
     if user.is_authenticated:
         try:
-            tweet = Tweets.objects.get(pk=twid)
             if tweet.favorites.filter(pk=user.pk).exists():
                 clas = "fi-sr-bookmark"
             return clas

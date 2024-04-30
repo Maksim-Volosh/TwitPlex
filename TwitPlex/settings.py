@@ -7,14 +7,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
-SECRET_KEY = 'django-insecure-8px_=!_=_q&x$k&!_9p2_f*6grn@k_)pr-h1m(#v3jpww1e*k^'
+SECRET_KEY = config.SECRET_KEY
 
 
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 
 INSTALLED_APPS = [
@@ -34,6 +38,7 @@ INSTALLED_APPS = [
     
     # utils apps
     'django_redis',
+    'debug_toolbar',
     
 ]
 
@@ -45,6 +50,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Our middleware
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'TwitPlex.urls'

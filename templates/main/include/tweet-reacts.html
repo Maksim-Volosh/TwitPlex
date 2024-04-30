@@ -7,7 +7,7 @@
         <form id="like-form-{{ tw.id }}" hx-post="{% url 'tweet:like_tweet' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#like-react-t-{{tw.id}}">
           <input type="hidden" name="tweet_id" value="{{ tw.id }}">
           <button class="like-btn" type="button" hx-target="#like-form-{{ tw.id }}" onclick="likeToggleIconClass('{{ tw.id }}')">
-              <i class="fi {% check_liked_tweets tw.id request.user %}" id="like-icon-{{ tw.id }}"></i>
+              <i class="fi {% check_liked_tweets tw request.user %}" id="like-icon-{{ tw.id }}"></i>
               <span class="react-t" id="like-react-t-{{tw.id}}">{{ tw.likes_count }}</span>
           </button>
         </form>
@@ -47,7 +47,7 @@
       <form id="favorites-form-{{ tw.id }}" hx-post="{% url 'tweet:favorites_tweet' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#favorites-react-t-{{tw.id}}">
         <input type="hidden" name="tweet_id" value="{{ tw.id }}">
         <button class="favorites-btn" type="button" hx-target="#favorites-form-{{ tw.id }}" onclick="favoritesToggleIconClass('{{ tw.id }}')">
-            <i class="fi {% check_favorited_tweets tw.id request.user %}" id="favorites-icon-{{ tw.id }}"></i>
+            <i class="fi {% check_favorited_tweets tw request.user %}" id="favorites-icon-{{ tw.id }}"></i>
             <span class="react-t" id="favorites-react-t-{{tw.id}}">{{ tw.favorites_count }}</span>
         </button>
       </form>

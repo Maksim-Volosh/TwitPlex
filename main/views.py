@@ -13,7 +13,7 @@ def index(request):
         tweets = Tweets.objects.annotate(
             likes_count=Count('likes'),
             favorites_count=Count('favorites')
-        )
+        ).select_related("owner").prefetch_related("likes", "favorites")
         
         tweets_flag = tweets.exists()
         
