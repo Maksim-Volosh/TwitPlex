@@ -24,12 +24,12 @@
           }
         </script>
       {% else %}
-      <a href="{% url "admin:index" %}">
-        <button class="like-btn">
-          <i class="fi fi-rs-heart"></i>
-          <span class="react-t">{{ tw.likes_count }}</span>
+      <form action="{% url "admin:index" %}" method="GET">
+        <button class="like-btn" type="submit">
+            <i class="fi fi-rs-heart"></i>
+            <span class="react-t">{{ tw.likes_count }}</span>
         </button>
-      </a>
+      </form>
       {% endif %}
     </div>
 
@@ -44,6 +44,7 @@
     </div>
     
     <div class="svg-i d-flex">
+      {% if request.user.is_authenticated %}
       <form id="favorites-form-{{ tw.id }}" hx-post="{% url 'tweet:favorites_tweet' %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#favorites-react-t-{{tw.id}}">
         <input type="hidden" name="tweet_id" value="{{ tw.id }}">
         <button class="favorites-btn" type="button" hx-target="#favorites-form-{{ tw.id }}" onclick="favoritesToggleIconClass('{{ tw.id }}')">
@@ -63,5 +64,13 @@
             }
         }
       </script>
+      {% else %}
+      <form action="{% url "admin:index" %}" method="GET">
+        <button class="favorites-btn" type="submit">
+            <i class="fi fi-rr-bookmark"></i>
+            <span class="react-t">{{ tw.favorites_count }}</span>
+        </button>
+      </form>
+      {% endif %}
     </div>
   </div>

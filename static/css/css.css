@@ -33,7 +33,7 @@
     gap: 4px;
 }
 
-.favorites-btn {
+.favorites-btn, .like-btn {
     gap: 12px;
 }
 
