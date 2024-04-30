@@ -24,7 +24,7 @@
           }
         </script>
       {% else %}
-      <form action="{% url "admin:index" %}" method="GET">
+      <form action="{% url "user:login" %}" method="GET">
         <button class="like-btn" type="submit">
             <i class="fi fi-rs-heart"></i>
             <span class="react-t">{{ tw.likes_count }}</span>
@@ -65,7 +65,7 @@
         }
       </script>
       {% else %}
-      <form action="{% url "admin:index" %}" method="GET">
+      <form action="{% url "user:login" %}" method="GET">
         <button class="favorites-btn" type="submit">
             <i class="fi fi-rr-bookmark"></i>
             <span class="react-t">{{ tw.favorites_count }}</span>

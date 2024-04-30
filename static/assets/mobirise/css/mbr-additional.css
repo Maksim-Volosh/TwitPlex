@@ -81,7 +81,7 @@ body {
 /* Buttons */
 .btn {
   padding: 0.6rem 1.2rem;
-  border-radius: 4px;
+  border-radius: 15px;
 }
 .btn-sm {
   padding: 0.6rem 1.2rem;
@@ -1167,8 +1167,8 @@ a {
   overflow: hidden;
 }
 .cid-u9Ldj6x0Iz {
-  padding-top: 10rem;
-  padding-bottom: 10rem;
+  padding-top: 25rem;
+  padding-bottom: 30rem;
   background-color: #000000;
 }
 .cid-u9Ldj6x0Iz .mbr-overlay {
@@ -1182,7 +1182,6 @@ a {
 }
 .cid-u9Ldj6x0Iz form .mbr-section-btn {
   text-align: center;
-  width: 100%;
 }
 .cid-u9Ldj6x0Iz form .mbr-section-btn .btn {
   width: 100%;

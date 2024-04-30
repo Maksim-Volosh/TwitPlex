@@ -66,6 +66,10 @@
                                         <span class="mobi-mbri mobi-mbri-alert mbr-iconfont mbr-iconfont-btn"></span>
                                         <span class="cl-dn">Nolifications</span>
                                     </a>
+                                    <a class="text-white show dropdown-item display-4" href="{% url "user:logout" %}">
+                                        <span class="mobi-mbri mobi-mbri-undo mbr-iconfont mbr-iconfont-btn"></span>
+                                        <span class="cl-dn">Logout</span>
+                                    </a>
 
                                     {% if request.user.is_superuser %}
                                         <a class="text-white show dropdown-item display-4" href="{% url "admin:index" %}">
@@ -76,12 +80,17 @@
                                 </div>
                             </li>
                         {% else %}    
-                            <li class="nav-item s-n-i"><a class="nav-link link text-white text-primary display-4" href="{% url "admin:index" %}">
+                            <li class="nav-item s-n-i"><a class="nav-link link text-white text-primary display-4" href="{% url "user:login" %}">
                                 <span class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn" style="font-size: 17px; color: rgb(255, 255, 255);"></span>
                                 <span class="cl-dn">Login</span></a></li>
                         {% endif %}
-                    </ul>
-                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4 mybtn" href="#">{% if current_page %}First{% endif %} Tweet</a></div>
+                    </ul>   
+                    {% if current_page or not request.user.is_authenticated %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4 mybtn" href="{% url "user:login" %}">First Tweet</a></div>
+                    {% else %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4 mybtn" href="#">Tweet</a></div>
+                    {% endif %}
+                    
                 </div>
             </div>
         </nav>
@@ -117,6 +126,7 @@
 <script src="{% static "assets/smoothscroll/smooth-scroll.js" %}"></script>
 <script src="{% static "assets/dropdown/js/navbar-dropdown.js" %}"></script>
 <script src="{% static "assets/ytplayer/index.js" %}"></script>
+<script src="{% static "assets/theme/js/script.js" %}"></script>
 <script src="https://unpkg.com/htmx.org@^1.6.1/dist/htmx.min.js"></script>
 
 </html>

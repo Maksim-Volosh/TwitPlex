@@ -11,15 +11,15 @@
             <div class="twit-first d-flex flex-row">
               <div class="img-a">
                 {% if tw.owner.image %}
-                <a href="{{ tw.owner.image.url }}"><img src="{{ tw.owner.image.url }}" alt="avatar" class="twit-avatar"></a>
+                <a href="{% url "user:profile" tw.owner %}"><img src="{{ tw.owner.image.url }}" alt="avatar" class="twit-avatar"></a>
                 {% else %}
-                <img src="{% static "img/no_avatar.jpg" %}" alt="avatar" class="twit-avatar">
+                <a href="{% url "user:profile" tw.owner %}"><img src="{% static "img/no_avatar.jpg" %}" alt="avatar" class="twit-avatar"></a>
                 {% endif %}
               </div>
           
               <div class="cont-title">
                 <h3 class="mbr-section-title mbr-fonts-style align-left mb-0 display-2 d-flex align-items-center tw-t">
-                  <strong class=""> {{ tw.owner.name|capfirst }} </strong><span class="gray">@{{ tw.owner|capfirst }} ·
+                  <a href="{% url "user:profile" tw.owner %}" class="auser"><strong class=""> {{ tw.owner.name|capfirst }} </strong></a><span class="gray">@{{ tw.owner|capfirst }} ·
                       {% if tw.time_create.year == current_year %}
                           {{ tw.time_create|date:"M d" }}
                       {% else %}

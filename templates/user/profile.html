@@ -24,10 +24,15 @@
                                 <em>
                                 <br>
                                 </em>
+                                {% if user.sphere %}
                                 <strong>{{user.sphere}}</strong>
                                 <br>
+                                {% endif %}
+
+                                {% if user.bio %}
                                 {{user.bio}}
                                 <br><br>
+                                {% endif %}
                                 <em>Joined - <strong>{{user.date_joined|date:"M d, Y"}}</strong></em>
                                 <br><br>
                                 <em>573 Following&nbsp; &nbsp; &nbsp;</em>

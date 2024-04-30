@@ -81,8 +81,8 @@
     color: gray;
 }
 
-.underline {
-    color: white;
+.underline, .auser {
+    color: white !important; 
 }
 
 .underline::after {
@@ -120,6 +120,10 @@
 
 .ww {
     width: 25%;
+}
+
+.errorlist {
+    color: #ef6e6ead
 }
 
 @media (max-width: 1199.98px) {
