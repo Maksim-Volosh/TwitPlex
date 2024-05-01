@@ -9,6 +9,9 @@ app_name = 'user'
 urlpatterns = [
     path('login/', login, name='login'),
     path('logout/', logout, name='logout'),
+    
+    path('edit/', editprofile, name='edit'),
+    
     path('<slug:username>/', profile, name='profile'),
     path('get_tweets/<slug:username>/<slug:post_type>/', show_tweets, name='show_tweets'),
 

@@ -9,3 +9,15 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['name', 'bio', 'sphere', 'image']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'sphere': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control'}),
+        }
+

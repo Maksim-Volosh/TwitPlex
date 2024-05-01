@@ -17,8 +17,8 @@
                     <div class="col-12 col-md" style="margin-top: 20px;">
                         <div class="card-box">
                             <h5 class="card-title mbr-fonts-style m-0 mb-3 display-7">
+                                
                                 <strong> {{user.name}} </strong>
-                                <br>
                                 <em>@{{user.username}}</em>
                                 <br>
                                 <em>
@@ -37,8 +37,8 @@
                                 <br><br>
                                 <em>573 Following&nbsp; &nbsp; &nbsp;</em>
                                 <em>180.2M Followers&nbsp; &nbsp; &nbsp;</em>
-                                <em>{{ tweets.count }} Tweets </em></h5>
-                            
+                                <em>{{ tweets.count }} Tweets </em>
+                            </h5>
                             
                             <div class="social-row display-7">
                                 <div class="soc-item">
@@ -56,9 +56,8 @@
                                         <span class="mbr-iconfont socicon socicon-instagram"></span>
                                     </a>
                                 </div>
-                                
-                                
                             </div>
+                            <div class="navbar-buttons mbr-section-btn user-edit"><a class="btn btn-primary display-4 mybtn" href="{% url "user:edit" %}">Edit profile </a></div>
                         </div>
                     </div>
                 </div>

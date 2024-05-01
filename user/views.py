@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 from django.core.cache import cache
 
 from tweet.models import Tweets
-from user.forms import LoginForm
+from user.forms import LoginForm, ProfileUpdateForm
 from user.models import User
 
 def profile(request, username):
@@ -35,6 +35,21 @@ def profile(request, username):
     }
     
     return render(request, 'user/profile.html', context)
+
+def editprofile(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
+            if form.is_valid():
+                form.save()
+                return redirect('user:profile', request.user.username)
+        else:
+            form = ProfileUpdateForm(instance=request.user)
+    else:
+        return redirect('user:login')
+    
+    return render(request, 'user/editprofile.html', {'form': form})
+
 
 def show_tweets(request, post_type, username):
     user = User.objects.get(username=username)

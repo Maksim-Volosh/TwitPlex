@@ -989,6 +989,7 @@ a {
 }
 .cid-sFGzlAXw3z .navbar .dropdown.open > .dropdown-menu {
   display: block;
+  position: absolute;
 }
 .cid-sFGzlAXw3z ul.navbar-nav {
   flex-wrap: wrap;
