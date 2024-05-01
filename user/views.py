@@ -10,31 +10,33 @@ from user.forms import LoginForm, ProfileUpdateForm
 from user.models import User
 
 def profile(request, username):
-    
-    cache_key = f'user_{username}'
-    user = cache.get(cache_key)
-    
-    if not user:
-        user: User = User.objects.get(username=username)
-        cache.set(cache_key, user, 60)
-    
-    user_tweets = Tweets.objects.annotate(
-        likes_count=Count('likes'),
-        favorites_count=Count('favorites')
-    ).filter(owner=user).select_related("owner").prefetch_related("likes", "favorites")
+    try:
+        cache_key = f'user_{username}'
+        user = cache.get(cache_key)
         
-    tweets_flag = user_tweets.exists()
+        if not user:
+            user: User = User.objects.get(username=username)
+            cache.set(cache_key, user, 60)
         
-    current_year = datetime.now().year
-    
-    context = {
-        "user": user,
-        "tweets": user_tweets,
-        "current_year": current_year,
-        "tweets_flag": tweets_flag,
-    }
-    
-    return render(request, 'user/profile.html', context)
+        user_tweets = Tweets.objects.annotate(
+            likes_count=Count('likes'),
+            favorites_count=Count('favorites')
+        ).filter(owner=user).select_related("owner").prefetch_related("likes", "favorites")
+            
+        tweets_flag = user_tweets.exists()
+            
+        current_year = datetime.now().year
+        
+        context = {
+            "user": user,
+            "tweets": user_tweets,
+            "current_year": current_year,
+            "tweets_flag": tweets_flag,
+        }
+        
+        return render(request, 'user/profile.html', context)
+    except:
+        return redirect('user:profile', request.user.username)
 
 def editprofile(request):
     if request.user.is_authenticated:
