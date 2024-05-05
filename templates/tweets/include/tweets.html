@@ -19,7 +19,7 @@
           
               <div class="cont-title">
                 <h3 class="mbr-section-title mbr-fonts-style align-left mb-0 display-2 d-flex align-items-center tw-t">
-                  <a href="{% url "user:profile" tw.owner %}" class="auser"><strong class=""> {{ tw.owner.name|capfirst }} </strong></a><span class="gray">@{{ tw.owner|capfirst }} ·
+                  <a href="{% url "user:profile" tw.owner %}" class="auser"><strong class=""> {{ tw.owner.name|capfirst }} </strong></a><span class="gray">@{{ tw.owner }} ·
                       {% if tw.time_create.year == current_year %}
                           {{ tw.time_create|date:"M d" }}
                       {% else %}
@@ -41,7 +41,7 @@
               </div>
             </div>
           </div>
-          {% include "main/include/tweet-reacts.html" %}
+          {% include "tweets/include/tweet-reacts.html" %}
         </div>
       </div>
     </div>
@@ -59,7 +59,11 @@
           <div class="col-12 content-head d-flex flex-column">
             <div class="twit-second">
               <div class="counter-container mbr-text mbr-fonts-style display-7 tw-tx">
+                {% if tweet_type %}
+                <p>You don't have any tweets.</p>
+                {% else %}
                 <p>Tweets hasn't been find</p>
+                {% endif %}
               </div>
             </div>
           </div>

@@ -2,20 +2,21 @@ from datetime import datetime
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.db.models import Count
-from django.shortcuts import redirect, render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect, render
 from django.core.cache import cache
 
 from tweet.models import Tweets
-from user.forms import LoginForm, ProfileUpdateForm
+from user.decorators import already_login
+from user.forms import LoginForm, ProfileUpdateForm, RegisterForm
 from user.models import User
 
 def profile(request, username):
-    try:
         cache_key = f'user_{username}'
         user = cache.get(cache_key)
         
         if not user:
-            user: User = User.objects.get(username=username)
+            user = get_object_or_404(User, username=username)
             cache.set(cache_key, user, 60)
         
         user_tweets = Tweets.objects.annotate(
@@ -32,11 +33,10 @@ def profile(request, username):
             "tweets": user_tweets,
             "current_year": current_year,
             "tweets_flag": tweets_flag,
+            "tweet_type": True
         }
         
         return render(request, 'user/profile.html', context)
-    except:
-        return redirect('user:profile', request.user.username)
 
 def editprofile(request):
     if request.user.is_authenticated:
@@ -58,6 +58,7 @@ def show_tweets(request, post_type, username):
     current_year = datetime.now().year
     context = {
         "current_year": current_year,
+        "tweet_type": False
     }
     
     if post_type == 'tweets': 
@@ -69,6 +70,7 @@ def show_tweets(request, post_type, username):
         tweets_flag = user_tweets.exists()
         context["tweets"] = user_tweets
         context["tweets_flag"] = tweets_flag
+        context["tweet_type"] = True
         
     elif post_type == 'favorites':
         favorites_tweets = Tweets.objects.annotate(
@@ -80,10 +82,23 @@ def show_tweets(request, post_type, username):
         context["tweets"] = favorites_tweets
         context["tweets_flag"] = tweets_flag
         
-    return render(request, 'main/include/tweets.html', context=context)
+    return render(request, 'tweets/include/tweets.html', context=context)
 
 
+@already_login
+def register(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()
+            auth.login(request, user)
+            return redirect('user:profile', user.username)
+    else:
+        form = RegisterForm()
+    return render(request, 'user/register.html', {'form': form})
 
+
+@already_login
 def login(request):
     if request.method == 'POST':
         form = LoginForm(data=request.POST)
@@ -100,7 +115,11 @@ def login(request):
     return render(request, 'user/login.html', {'form': form})
 
 
+
 def logout(request):
-    auth.logout(request)
-    return redirect('main:index')
+    if request.user.is_authenticated:
+        auth.logout(request)
+        return redirect('main:index')
+    else:
+        return redirect('user:login')
 

@@ -11,7 +11,11 @@
                 <div class="row align-items-center">
                     <div class="ww" style="margin: 0 0 0 20px;">
                         <div class="image-wrapper">
-                            <img src="{{ user.image.url }}" alt="Mobirise Website Builder" style="border-radius: 5px;">
+                            {% if user.image %}
+                            <img src="{{ user.image.url }}" alt="avatar" style="border-radius: 5px;">
+                            {% else %}
+                            <img src="{% static "img/no_avatar.jpg" %}" alt="avatar" style="border-radius: 5px;">
+                            {% endif %}
                         </div>
                     </div>
                     <div class="col-12 col-md" style="margin-top: 20px;">
@@ -83,9 +87,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="title col-md-12 col-lg-10 sort-buttons">
-                <div class="sort-buttons-div"><i class="fi fi-rs-heart"></i><button id="tweets-btn" class="underline tweet active" hx-get="{% url 'user:show_tweets' user.username 'tweets' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('tweets-btn')">Tweets</button></div>
+                <div class="sort-buttons-div"><button id="tweets-btn" class="underline tweet active" hx-get="{% url 'user:show_tweets' user.username 'tweets' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('tweets-btn')">Tweets</button></div>
                 {% if request.user == user %}
-                    <div class="sort-buttons-div"><i class="fi fi-rr-bookmark"></i><button id="favorites-btn" class="favorites" hx-get="{% url 'user:show_tweets' user.username 'favorites' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('favorites-btn')">Favorites</button></div>
+                    <div class="sort-buttons-div"><button id="favorites-btn" class="favorites" hx-get="{% url 'user:show_tweets' user.username 'favorites' %}" hx-trigger="click" hx-target="#article20-i" onclick="choiseCategory('favorites-btn')">Favorites</button></div>
                 {% endif %}
             </div>
         </div>
@@ -93,7 +97,7 @@
 </section>
 
 <section data-bs-version="5.1" class="article07 cid-u9LgirLGy7 place-for-tweets" id="article20-i">
-    {% include "main/include/tweets.html" %}
+    {% include "tweets/include/tweets.html" %}
 </section>
 
     <script>

@@ -26,9 +26,11 @@
                             {{ form.non_field_errors }}
                         {% endif %}
 
+                        <p class="form-question"><a href="{% url "user:register" %}" class="form-question-a">Don't you have an account?</a></p>
+
                         <div class="col-auto mbr-section-btn align-center">
                             <button type="submit" class="btn btn-primary display-4">Submit</button>
-                        </div>
+                        </div> 
                 </form>
             </div>
         </div>

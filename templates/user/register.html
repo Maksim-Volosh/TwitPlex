@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}TwitPlex - Register{% endblock title %}
+
+{% block body %}
+<section data-bs-version="5.1" class="form6 cid-u9Ldj6x0Iz" id="form6-6">
+    <div class="container">
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Register</strong></h3>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
+                <form action="{% url 'user:register' %}" method="POST" class="mbr-form form-with-styler mx-auto" enctype="multipart/form-data" data-form-title="Form Name">
+                    {% csrf_token %}
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="text" name="username" placeholder="Username" data-form-field="username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" class="form-control" maxlength="150" required="" id="id_username">
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="text" name="name" placeholder="Name" data-form-field="name" value="{% if form.name.value %}{{ form.name.value }}{% endif %}" class="form-control" maxlength="30" required="" id="id_name">
+                        {{ form.name.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="password" name="password1" placeholder="Password" data-form-field="password1" value="{% if form.password1.value %}{{ form.password1.value }}{% endif %}" class="form-control" required="" id="id_password1">
+                        {{ form.password1.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="password" name="password2" placeholder="Confirm Password" value="{% if form.password2.value %}{{ form.password2.value }}{% endif %}" data-form-field="password1" class="form-control" required="" id="id_password2">
+                        {{ form.password2.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <textarea type="text" name="bio" placeholder="Bio (Optional)" data-form-field="bio" class="form-control" id="id_bio">{% if form.bio.value %}{{ form.bio.value }}{% endif %}</textarea>
+                        {{ form.bio.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        <input type="text" name="sphere" placeholder="Sphere (Optional)" data-form-field="sphere" value="{% if form.sphere.value %}{{ form.sphere.value }}{% endif %}" class="form-control" maxlength="35" id="id_sphere">
+                        {{ form.sphere.errors }}
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        {{ form.image }}
+                        {{ form.image.errors }}
+                    </div>
+                
+                    {% if form.non_field_errors %}
+                        {{ form.non_field_errors }}
+                    {% endif %}
+                    
+                    <p class="form-question"><a href="{% url "user:login" %}" class="form-question-a">Alredy have an account?</a></p>
+
+                    <div class="col-auto mbr-section-btn align-center">
+                        <button type="submit" class="btn btn-primary display-4">Submit</button>
+                    </div>
+                </form>                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}
