@@ -14,6 +14,9 @@
             <div class="col-lg-8 mx-auto mbr-form" data-form-type="formoid">
                 <form action="{% url 'user:register' %}" method="POST" class="mbr-form form-with-styler mx-auto" enctype="multipart/form-data" data-form-title="Form Name">
                     {% csrf_token %}
+                    {% if request.GET.next %}
+                        <input type="hidden" name="next" value="{{ request.GET.next }}">
+                    {% endif %}
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
                         <input type="text" name="username" placeholder="Username" data-form-field="username" value="{% if form.username.value %}{{ form.username.value }}{% endif %}" class="form-control" maxlength="150" required="" id="id_username">
                         {{ form.username.errors }}
@@ -47,7 +50,7 @@
                         {{ form.non_field_errors }}
                     {% endif %}
                     
-                    <p class="form-question"><a href="{% url "user:login" %}" class="form-question-a">Alredy have an account?</a></p>
+                    <p class="form-question"><a href="{% url "user:login" %}{% if request.GET.next %}?next={{ request.GET.next }}{% endif %}" class="form-question-a">Alredy have an account?</a></p>
 
                     <div class="col-auto mbr-section-btn align-center">
                         <button type="submit" class="btn btn-primary display-4">Submit</button>

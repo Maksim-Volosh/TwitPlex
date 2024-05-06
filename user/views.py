@@ -2,8 +2,9 @@ from datetime import datetime
 from django.contrib import auth
 from django.contrib.auth import authenticate, login
 from django.db.models import Count
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 from django.core.cache import cache
 
 from tweet.models import Tweets
@@ -11,6 +12,8 @@ from user.decorators import already_login
 from user.forms import LoginForm, ProfileUpdateForm, RegisterForm
 from user.models import User
 
+
+@login_required
 def profile(request, username):
         cache_key = f'user_{username}'
         user = cache.get(cache_key)
@@ -38,17 +41,16 @@ def profile(request, username):
         
         return render(request, 'user/profile.html', context)
 
+
+@login_required
 def editprofile(request):
-    if request.user.is_authenticated:
-        if request.method == 'POST':
-            form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
-            if form.is_valid():
-                form.save()
-                return redirect('user:profile', request.user.username)
-        else:
-            form = ProfileUpdateForm(instance=request.user)
+    if request.method == 'POST':
+        form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('user:profile', request.user.username)
     else:
-        return redirect('user:login')
+        form = ProfileUpdateForm(instance=request.user)
     
     return render(request, 'user/editprofile.html', {'form': form})
 
@@ -92,6 +94,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
             auth.login(request, user)
+            if request.POST.get('next'):
+                return HttpResponseRedirect(request.POST.get('next'))
             return redirect('user:profile', user.username)
     else:
         form = RegisterForm()
@@ -108,6 +112,8 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user:
                 auth.login(request, user)
+                if request.POST.get('next'):
+                    return HttpResponseRedirect(request.POST.get('next'))
                 return redirect('user:profile', user.username)
     else:
         form = LoginForm()
@@ -115,11 +121,8 @@ def login(request):
     return render(request, 'user/login.html', {'form': form})
 
 
-
+@login_required
 def logout(request):
-    if request.user.is_authenticated:
-        auth.logout(request)
-        return redirect('main:index')
-    else:
-        return redirect('user:login')
+    auth.logout(request)
+    return redirect('main:index')
 

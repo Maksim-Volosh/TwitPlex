@@ -35,22 +35,22 @@
                     {% csrf_token %}
                     
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <label for="id_name" class="form-label">{{form.name.label}}</label>
+                        
                         {{ form.name }}
                         {{ form.name.errors }}
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <label for="id_bio" class="form-label">{{form.bio.label}}</label>
+                        
                         {{ form.bio }}
                         {{ form.bio.errors }}
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <label for="id_sphere" class="form-label">{{form.sphere.label}}</label>
+                        
                         {{ form.sphere }}
                         {{ form.sphere.errors }}
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
-                        <p class="form-label">Choice avatar</p>
+                        
                         {{ form.image }}
                         {{ form.image.errors }}
                     </div>
