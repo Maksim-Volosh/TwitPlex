@@ -2,95 +2,19 @@
 {% load static %}
 {% load tweet_tags %}
 
-{% block title %}Home - TwitPlex{% endblock title %}Home - TwitPlex
+{% block title %}Home - TwitPlex{% endblock title %}
 
 
 {% block body %}
 <section data-bs-version="5.1" class="b">
 
 </section>
-
 {% include "tweets/include/tweets.html" %}
     
-
  <div id="scrollToTop" class="scrollToTop mbr-arrow-up"><a style="text-align: center;"><i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i></a></div>
     <input name="animation" type="hidden">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-{% if request.user.is_authenticated %}
-{% comment %} <script>
-  $(document).ready(function(){
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
-
-    $('.like-btn').click(function(){
-        var tweet_id = $(this).data('tweet-id');
-        var like_btn = $(this);
-        var csrftoken = getCookie('csrftoken');
-        var like_icon = like_btn.find('i');
-        $.ajax({
-            url: 'ajax/like_tweet/',
-            method: 'POST',
-            headers: {'X-CSRFToken': csrftoken},
-            data: {'tweet_id': tweet_id},
-            success: function(data){
-                console.log('Success:', data); // Отладочный вывод успешного ответа в консоль
-                console.log('Liked:', data.liked); // Отладочный вывод статуса лайка в консоль
-                if (data.liked) {
-                    like_icon.removeClass('fi-rs-heart').addClass('fi-ss-heart');
-                } else {
-                    like_icon.removeClass('fi-ss-heart').addClass('fi-rs-heart');
-                }
-                like_btn.siblings('.react-t').text(data.likes_count); // Обновляем количество лайков
-            },
-            error: function(xhr, status, error) {
-                console.error('Error:', error); // Отладочный вывод ошибки в консоль
-            }
-        });
-    }); // Закрывающая скобка для обработчика события лайков
-
-    $('.favorites-btn').click(function(){
-        var tweet_id = $(this).data('tweet-id');
-        var favorites_btn = $(this);
-        var csrftoken = getCookie('csrftoken');
-        var favorites_icon = favorites_btn.find('i');
-        $.ajax({
-            url: 'ajax/favorites_tweet/',
-            method: 'POST',
-            headers: {'X-CSRFToken': csrftoken},
-            data: {'tweet_id': tweet_id},
-            success: function(data){
-              console.log('Success:', data); // Отладочный вывод успешного ответа в консоль
-              console.log('favorites:', data.favorites); // Отладочный вывод статуса лайка в консоль
-              if (data.favorites) {
-                  favorites_icon.removeClass('fi-rr-bookmark').addClass('fi-sr-bookmark');
-              } else {
-                  favorites_icon.removeClass('fi-sr-bookmark').addClass('fi-rr-bookmark');
-              }
-              favorites_btn.siblings('.react-t').text(data.favorites_count); // Обновляем количество избранных
-
-          },
-          error: function(xhr, status, error) {
-              console.error('Error:', error); // Отладочный вывод ошибки в консоль
-          }
-        });
-    }); // Закрывающая скобка для обработчика события добавления в избранное
-});
-</script> {% endcomment %}
-{% endif %}
 
     
     

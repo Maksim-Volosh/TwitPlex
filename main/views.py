@@ -11,8 +11,8 @@ def index(request):
         return redirect('welcome:index')
     else:
         tweets = Tweets.objects.annotate(
-            likes_count=Count('likes'),
-            favorites_count=Count('favorites')
+            likes_count=Count('likes', distinct=True),
+            favorites_count=Count('favorites', distinct=True)
         ).select_related("owner").prefetch_related("likes", "favorites")
         
         tweets_flag = tweets.exists()

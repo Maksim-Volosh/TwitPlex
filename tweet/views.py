@@ -12,10 +12,8 @@ def like_tweet(request):
                 user = request.user
                 if user in tweet.likes.all():
                     tweet.likes.remove(user)
-                    liked = False
                 else:
                     tweet.likes.add(user)
-                    liked = True
                 likes_count = tweet.likes.count()
                 return JsonResponse(likes_count, safe=False)
             except Tweets.DoesNotExist:
@@ -30,16 +28,10 @@ def add_to_favorites_tweet(request):
                 tweet = Tweets.objects.get(pk=tweet_id)
                 user = request.user
                 if user in tweet.favorites.all():
-                    # Если пользователь уже лайкнул твит, убираем лайк
                     tweet.favorites.remove(user)
-                    favorites = False
                 else:
-                    # Если пользователь еще не лайкнул твит, добавляем лайк
                     tweet.favorites.add(user)
-                    favorites = True
                 favorites_count = tweet.favorites.count()
-
-                # Возвращаем JSON-ответ с информацией о лайке и общем количестве лайков
                 return JsonResponse(favorites_count, safe=False)
             except Tweets.DoesNotExist:
                 pass

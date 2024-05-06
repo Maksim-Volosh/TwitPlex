@@ -23,8 +23,8 @@ def profile(request, username):
             cache.set(cache_key, user, 60)
         
         user_tweets = Tweets.objects.annotate(
-            likes_count=Count('likes'),
-            favorites_count=Count('favorites')
+            likes_count=Count('likes', distinct=True),
+            favorites_count=Count('favorites', distinct=True)
         ).filter(owner=user).select_related("owner").prefetch_related("likes", "favorites")
             
         tweets_flag = user_tweets.exists()
@@ -65,8 +65,8 @@ def show_tweets(request, post_type, username):
     
     if post_type == 'tweets': 
         user_tweets = Tweets.objects.annotate(
-            likes_count=Count('likes'),
-            favorites_count=Count('favorites')
+            likes_count=Count('likes', distinct=True),
+            favorites_count=Count('favorites', distinct=True)
         ).filter(owner=user)
         
         tweets_flag = user_tweets.exists()
@@ -76,8 +76,8 @@ def show_tweets(request, post_type, username):
         
     elif post_type == 'favorites':
         favorites_tweets = Tweets.objects.annotate(
-            likes_count=Count('likes'),
-            favorites_count=Count('favorites')
+            likes_count=Count('likes', distinct=True),
+            favorites_count=Count('favorites', distinct=True)
         ).filter(favorites=user)
         
         tweets_flag = favorites_tweets.exists()
