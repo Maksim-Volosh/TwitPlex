@@ -6,8 +6,12 @@ from TwitPlex import settings
 
 
 urlpatterns = [
+    
     # django urls
     path('admin/', admin.site.urls),
+    
+    #google oauth
+    path('accounts/', include('allauth.urls')),
     
     #our urls
     path('welcome/', include('welcome.urls')),

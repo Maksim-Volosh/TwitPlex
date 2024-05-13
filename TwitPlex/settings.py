@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 SECRET_KEY = config.SECRET_KEY
-
+SITE_ID = 2
 
 DEBUG = True
 
@@ -19,6 +19,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
 
 
 INSTALLED_APPS = [
@@ -39,8 +40,28 @@ INSTALLED_APPS = [
     # utils apps
     'django_redis',
     'debug_toolbar',
+    'django.contrib.sites',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth',
+    'allauth.account'
+    
     
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    } 
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +74,7 @@ MIDDLEWARE = [
     
     # Our middleware
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'TwitPlex.urls'
@@ -137,3 +159,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.User'
 LOGIN_URL = '/profile/login/user/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SOCIALACCOUNT_ADAPTER = 'user.adapters.CustomSocialAccountAdapter'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

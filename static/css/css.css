@@ -173,6 +173,19 @@
     padding-bottom: 25rem !important;
 }
 
+.btn-google {
+    padding: 0.3rem 0.6rem !important;
+}
+
+.form-google {
+    margin: 0px 0px 20px 0px;
+}
+
+.iii {
+    display: flex !important;
+    flex-direction: row;
+}
+
 @media (max-width: 1199.98px) {
     .nav-link {
         padding: 0 0.1em !important;
@@ -207,7 +220,7 @@
         flex-direction: row;
         gap: 20px;
     }
-    .cl-dn {
+    .cl-dn-1 {
         display: none;
     }
     .cid-u9Ldj6x0Iz {
@@ -286,6 +299,16 @@
     .cid-u9Ldj6x0Iz {
         padding-top: 5rem !important;
         padding-bottom: 10rem !important;
+    }
+    .navbar-buttons {
+        margin: 0px 0px 0px 0px !important;
+    }
+    .cid-sFGzlAXw3z .nav-dropdown .link.dropdown-toggle::after {
+        margin-left: 0rem !important;
+        margin-top: 0.2rem;
+    }
+    .mybtn {
+        margin: 0.6rem 0rem 0.6rem 0rem;
     }
 
 }

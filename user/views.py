@@ -15,6 +15,8 @@ from user.models import User
 
 @login_required
 def profile(request, username):
+        if not username:
+            return redirect('user:profile', request.username)
         cache_key = f'user_{username}'
         user = cache.get(cache_key)
         
