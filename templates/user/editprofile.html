@@ -34,6 +34,12 @@
                 <form action="{% url "user:edit" %}" method="POST" class="mbr-form form-with-styler mx-auto" data-form-title="Edit profile" enctype="multipart/form-data">
                     {% csrf_token %}
                     
+                    <p class="form-label">Username can be changed once every 14 days!</p>
+                    <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
+                        
+                        {{ form.username }}
+                        {{ form.username.errors }}
+                    </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-3">
                         
                         {{ form.name }}
